@@ -8,6 +8,7 @@ import WorkHorizontal from "@/components/main/WorkHorizontal";
 import TechStack from "@/components/main/TechStack";
 // import ContactAstronaut from "@/components/main/ContactAstronaut";
 import Testimonials from "@/components/main/Testimonials";
+import ResumeButton from "@/components/sub/ResumeButton";
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
         <TechStack />
         {/* <ContactAstronaut /> */}
         <Testimonials />
+        <ResumeButton />
+
       </div>
     </main>
   );

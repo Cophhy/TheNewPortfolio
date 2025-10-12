@@ -8,7 +8,7 @@ export default function TechStack() {
     <section
       id="techstack"
       // mais altura + mais padding inferior para não encostar no footer
-      className="relative w-screen overflow-hidden pb-40 md:pb-48"
+      className="relative w-screen overflow-hidden pb-10 md:pb-16"
     >
       {/* Título sobreposto */}
       <div className="pointer-events-none absolute top-6 left-1/2 -translate-x-1/2 z-10">

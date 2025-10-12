@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { TESTIMONIALS } from "@/constants/testimonials";
 import { motion, AnimatePresence } from "framer-motion";
+import ShootingStars from "@/components/sub/ShootingStars";
 
 const AUTO_MS = 6000;
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -64,9 +65,11 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative mx-auto max-w-7xl px-6 md:px-8 pt-24 md:pt-32 pb-44 md:pb-56"
+        className="relative mx-auto max-w-7xl px-6 md:px-8 pt-12 md:pt-16 pb-64 md:pb-80"
       aria-label="Testimonials"
     >
+        <ShootingStars />
+
       {/* título no estilo do site */}
       <div className="text-center mb-10 md:mb-12">
         <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
