@@ -32,14 +32,12 @@ export default function CareerRow({ item, index, revealed = false }: Props) {
           {item.title}
         </h3>
         <p className="mt-1 text-violet-300/90 text-sm md:text-base">{item.company}</p>
+        {/* 👇 ANO embaixo do nome da empresa (pequeno) */}
+        <p className="mt-0.5 text-xs md:text-sm text-zinc-500">{item.year}</p>
       </motion.div>
 
-      {/* CENTRO: ano SEMPRE visível (igual à referência) */}
-      <div className="col-span-2 md:col-span-2 text-center">
-        <p className="text-3xl md:text-5xl font-semibold tracking-tight text-zinc-200">
-          {item.year}
-        </p>
-      </div>
+      {/* CENTRO: mantém o espaço para não mexer no layout */}
+      <div className="col-span-2 md:col-span-2" aria-hidden />
 
       {/* DIREITA: descrição (oculta até a linha passar/hover) */}
       <motion.div
