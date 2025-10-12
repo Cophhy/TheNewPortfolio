@@ -16,7 +16,7 @@ export const WORKS: WorkItem[] = [
     title: "Fendi",
     subtitle: "3D Modeling",
     tools: "Blender, Substance Painter, Low poly modeling",
-    imageSrc: "/works/fendi.jpg",
+    imageSrc: "/works/test.jpg",
     href: "#",
   },
   {
@@ -25,7 +25,7 @@ export const WORKS: WorkItem[] = [
     title: "Executive Spaces",
     subtitle: "Web design and development",
     tools: "Javascript, Scrollmagic, PHP, Blog admin",
-    imageSrc: "/works/executive-spaces.jpg",
+    imageSrc: "/works/test.jpg",
     href: "#",
   },
   {
@@ -34,7 +34,7 @@ export const WORKS: WorkItem[] = [
     title: "Games",
     subtitle: "React, Typescript, Express",
     tools: "SPA, Auth flow, Reusable UI",
-    imageSrc: "/works/games.jpg",
+    imageSrc: "/works/test.jpg",
     href: "#",
   },
 {
@@ -43,7 +43,7 @@ export const WORKS: WorkItem[] = [
     title: "Games",
     subtitle: "React, Typescript, Express",
     tools: "SPA, Auth flow, Reusable UI",
-    imageSrc: "/works/games.jpg",
+    imageSrc: "/works/test.jpg",
     href: "#",
   },
   {

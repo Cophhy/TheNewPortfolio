@@ -92,7 +92,7 @@ export default function WorkHorizontal() {
         style={{ top: stickyTop, height: `calc(100vh - ${stickyTop}px - 20px)` }}
       >
         {/* Título fixo dentro da sticky */}
-        <div ref={titleRef} className="absolute inset-x-0 top-0 z-10 flex items-end h-12 md:h-16">
+        <div ref={titleRef} className="absolute inset-x-0 top-0 z-10 flex items-end h-12 md:h-16 pb-2 md:pb-3">
           <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
               <span className="bg-gradient-to-r from-zinc-100 to-violet-300 bg-clip-text text-transparent">
@@ -103,7 +103,7 @@ export default function WorkHorizontal() {
         </div>
 
         {/* Carrossel começa logo abaixo do título */}
-        <div className="absolute left-0 right-0 bottom-0" style={{ top: titleH + 8 }}>
+        <div className="absolute left-0 right-0 bottom-0" style={{ top: titleH + 20 }}>
           <motion.div
             ref={trackRef}
             style={{ x }}
