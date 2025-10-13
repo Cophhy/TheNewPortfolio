@@ -9,22 +9,24 @@ import TechStack from "@/components/main/TechStack";
 // import ContactAstronaut from "@/components/main/ContactAstronaut";
 import Testimonials from "@/components/main/Testimonials";
 import ResumeButton from "@/components/sub/ResumeButton";
+import About from "@/components/main/About";
 
 export default function Home() {
   return (
     <main className="h-full w-full">
       <div className="flex flex-col gap-20">
         <Hero />
-        <Skills />
+        {/* <Skills /> */}
+        <About />
         <CareerExperience />
-        <Encryption />
+        {/* <Encryption /> */}
         {/* <Projects /> */}
         {/* <Experience /> */}
         <WorkHorizontal />
         <TechStack />
         {/* <ContactAstronaut /> */}
         <Testimonials />
-        <ResumeButton />
+        {/* <ResumeButton /> */}
 
       </div>
     </main>

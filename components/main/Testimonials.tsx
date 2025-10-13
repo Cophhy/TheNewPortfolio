@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { TESTIMONIALS } from "@/constants/testimonials";
 import { motion, AnimatePresence } from "framer-motion";
-import ShootingStars from "@/components/sub/ShootingStars";
 
 const AUTO_MS = 6000;
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -65,10 +64,38 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-        className="relative mx-auto max-w-7xl px-6 md:px-8 pt-12 md:pt-16 pb-64 md:pb-80"
+      className="relative mx-auto max-w-7xl px-6 md:px-8 pt-12 md:pt-16 pb-64 md:pb-80"
       aria-label="Testimonials"
     >
-        <ShootingStars />
+    {/* === FUNDO: vídeo full-bleed com fade nas bordas === */}
+    <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-screen h-full -z-10">
+      {/* wrapper com mask (centro opaco, bordas transparentes) */}
+      <div
+        className="
+          relative h-full w-full
+          [mask-image:radial-gradient(ellipse_at_center,white_62%,transparent_100%)]
+          [-webkit-mask-image:radial-gradient(ellipse_at_center,white_62%,transparent_100%)]
+        "
+      >
+        <video
+          className="h-full w-full object-cover opacity-30"
+          preload="none"
+          playsInline
+          muted
+          loop
+          autoPlay
+          aria-hidden="true"
+        >
+          <source src="/videos/skills-bg.webm" type="video/webm" />
+          {/* <source src="/videos/skills-bg.mp4" type="video/mp4" /> */}
+        </video>
+      </div>
+
+      {/* overlay sutil p/ legibilidade do texto (opcional) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030014]/50 via-transparent to-[#030014]/75" />
+    </div>
+
+
 
       {/* título no estilo do site */}
       <div className="text-center mb-10 md:mb-12">
