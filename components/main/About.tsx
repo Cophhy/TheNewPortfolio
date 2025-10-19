@@ -12,8 +12,8 @@ const COPY = {
     name: "Brendha",
     role: "Engenheira de Computação",
     description:
-      "Sou engenheira de computação com experiência em inteligência artificial, machine learning e visão computacional. Trabalho com modelos YOLO (detecção/segmentação), criação e curadoria de datasets, treino/validação e APIs de inferência que integram soluções de IA a aplicações e serviços. Também desenvolvo backend com Node.js/SQL e mantenho um pé forte no desenvolvimento web. Nos hobbies, exploro robótica e game dev.",
-    pills: ["YOLO", "Computer Vision", "Node.js", "SQL", "React", "Next.js", "Robótica", "Game Dev"],
+      "Sou engenheira de computação com experiência em inteligência artificial, machine learning e visão computacional. Trabalho com a linha YOLO (detecção/segmentação), criação e curadoria de datasets, treino/validação e APIs de inferência que integram soluções de IA a aplicações e serviços. Também desenvolvo backend com Node.js/SQL e mantenho um pé forte no desenvolvimento web. Paralelamente, estudo LLMs para expandir meu repertório — RAG, embeddings, avaliação e boas práticas de productização.",
+    pills: ["YOLO", "Computer Vision", "Node.js", "SQL", "React", "Next.js", "LLMs (aprendizado)"],
   },
   en: {
     title: "About",
@@ -21,8 +21,8 @@ const COPY = {
     name: "Brendha",
     role: "Computer Engineer",
     description:
-      "I'm a computer engineer with experience in artificial intelligence, machine learning, and computer vision. I work with YOLO models (detection/segmentation), dataset creation/curation, training/validation, and inference APIs that bring AI into real applications and services. I also build backend with Node.js/SQL and keep a strong foot in web development. As hobbies, I explore robotics and game development.",
-    pills: ["YOLO", "Computer Vision", "Node.js", "SQL", "React", "Next.js", "Robotics", "Game Dev"],
+      "I'm a computer engineer with experience in artificial intelligence, machine learning, and computer vision. I work with the YOLO family (detection/segmentation), dataset creation/curation, training/validation, and inference APIs that bring AI into applications and services. I also build backend with Node.js/SQL and keep a strong foot in web development. In parallel, I'm learning LLMs to broaden my toolkit — RAG, embeddings, evaluation, and productization best practices.",
+    pills: ["YOLO", "Computer Vision", "Node.js", "SQL", "React", "Next.js", "LLMs (learning)"],
   },
 } as const;
 
@@ -46,7 +46,7 @@ export default function About() {
 
       {/* grid com svg + texto (sem card) */}
       <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-2">
-        {/* SVG / ilustração do hero */}
+        {/* Ilustração */}
         <motion.div
           variants={slideInFromLeft(0.2)}
           initial="hidden"

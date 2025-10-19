@@ -38,7 +38,7 @@ const COPY = {
     social: "Redes",
     thanks_title: "Obrigada pela atenção!",
     thanks_text:
-      "Agradeço por visitar meu portfólio. Fique à vontade para entrar em contato para colaborações, oportunidades ou para bater um papo sobre IA, visão computacional e desenvolvimento.",
+      "Agradeço por visitar meu portfólio. Fique à vontade para entrar em contato para colaborações, oportunidades ou para bater um papo.",
     rights: "Todos os direitos reservados.",
   },
   en: {
@@ -49,7 +49,7 @@ const COPY = {
     social: "Social",
     thanks_title: "Thanks for your attention!",
     thanks_text:
-      "Thanks for visiting my portfolio. Feel free to reach out for collaborations, opportunities, or just to chat about AI, computer vision, and development.",
+      "Thanks for visiting my portfolio. Feel free to reach out for collaborations, opportunities, or just to chat.",
     rights: "All rights reserved.",
   },
 } as const;

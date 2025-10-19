@@ -25,7 +25,7 @@ export default function Home() {
         <WorkHorizontal />
         <TechStack />
         {/* <ContactAstronaut /> */}
-        <Testimonials />
+        {/* <Testimonials /> */}
         {/* <ResumeButton /> */}
 
       </div>

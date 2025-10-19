@@ -16,6 +16,9 @@ export default function WorkHorizontal() {
   const [titleH, setTitleH] = useState<number>(56);
   const [maxX, setMaxX] = useState<number>(0);
 
+  // largura do spacer direito para alinhar o centro do último card ao centro do viewport
+  const [tailW, setTailW] = useState<number>(24);
+
   const measureNavbar = () => {
     const nav =
       document.querySelector('[data-site-header]') ||
@@ -38,15 +41,34 @@ export default function WorkHorizontal() {
     const th = titleRef.current?.offsetHeight ?? 56;
     setTitleH(th);
 
+    // altura da área sticky (abaixo da navbar, com um pequeno gap inferior)
     const bottomGap = 20;
     const stickyHeight = Math.max(1, vh - topOffset - bottomGap);
 
-    const sw = trackRef.current?.scrollWidth ?? vw;
-    const delta = Math.max(0, Math.ceil(sw - vw));
+    const viewportW = stickyRef.current?.clientWidth || vw;
 
+    // === calcular tailW para centralizar o último card quando x chegar no fim ===
+    // pega a largura do último card (não o spacer)
+    const slides = trackRef.current?.querySelectorAll<HTMLElement>("[data-slide]") ?? null;
+    const lastSlide = slides && slides.length ? slides[slides.length - 1] : null;
+    const lastW = lastSlide?.offsetWidth || Math.round(viewportW / 3);
+
+    // queremos que, no fim do scroll (x = -maxX), o centro do último card esteja no centro do viewport.
+    // isso é verdadeiro quando tailW = (viewportW/2 - lastW/2). Se negativo, usa 0.
+    const idealTail = Math.max(0, Math.round(viewportW / 2 - lastW / 2));
+    if (idealTail !== tailW) setTailW(idealTail);
+
+    // Agora podemos medir o scrollWidth já (na próxima render o tail muda; mas temos um fallback de recalc abaixo)
+    const trackEl = trackRef.current;
+    const scrollW = trackEl?.scrollWidth || viewportW;
+
+    // delta horizontal real
+    const delta = Math.max(0, Math.ceil(scrollW - viewportW));
+
+    // altura total para “pin” = altura sticky + quanto precisamos rolar para consumir todo delta
     setPinHeight(stickyHeight + delta);
     setMaxX(delta);
-  }, []);
+  }, [tailW]);
 
   useLayoutEffect(() => { recalc(); }, [recalc]);
   useEffect(() => {
@@ -54,6 +76,7 @@ export default function WorkHorizontal() {
     const onLoad = () => recalc();
     window.addEventListener("resize", onResize);
     window.addEventListener("load", onLoad);
+    // tente recalc quando as fontes carregarem
     // @ts-ignore
     document?.fonts?.ready?.then?.(recalc).catch(() => {});
     let ro: ResizeObserver | null = null;
@@ -61,7 +84,8 @@ export default function WorkHorizontal() {
       ro = new ResizeObserver(() => recalc());
       ro.observe(trackRef.current);
     }
-    const t = setTimeout(recalc, 80);
+    // um recalc extra pra garantir após atualização do tailW
+    const t = setTimeout(recalc, 60);
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("load", onLoad);
@@ -91,7 +115,7 @@ export default function WorkHorizontal() {
         className="sticky overflow-hidden"
         style={{ top: stickyTop, height: `calc(100vh - ${stickyTop}px - 20px)` }}
       >
-        {/* Título fixo dentro da sticky */}
+        {/* Título fixo */}
         <div ref={titleRef} className="absolute inset-x-0 top-0 z-10 flex items-end h-12 md:h-16 pb-2 md:pb-3">
           <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
@@ -102,7 +126,7 @@ export default function WorkHorizontal() {
           </div>
         </div>
 
-        {/* Carrossel começa logo abaixo do título */}
+        {/* Trilho do carrossel (começa após o título) */}
         <div className="absolute left-0 right-0 bottom-0" style={{ top: titleH + 20 }}>
           <motion.div
             ref={trackRef}
@@ -115,27 +139,18 @@ export default function WorkHorizontal() {
               will-change-transform
             "
           >
-            {/* spacers de respiro */}
-            <div className="w-[14px] sm:w-[16px] md:w-[20px] lg:w-[24px]" aria-hidden />
+            {/* Spacer esquerdo fixo (respiro) */}
+            <div className="w-[18px] sm:w-[22px] md:w-[26px] lg:w-[30px]" aria-hidden />
 
-            {WORKS.map((w, i) => {
-              const isFirst = i === 0;
-              const isLast = i === WORKS.length - 1;
-              return (
-                <div
-                  key={w.id}
-                  className={[
-                    isFirst ? "ml-[8px] sm:ml-[10px] md:ml-[12px] lg:ml-[14px]" : "",
-                    isLast ? "mr-[8px] sm:mr-[10px] md:mr-[12px] lg:mr-[14px]" : "",
-                  ].join(" ")}
-                >
-                  {/* ❌ sem divisória entre colunas */}
-                  <WorkSlide item={w} imageFirst={false} />
-                </div>
-              );
-            })}
+            {/* Slides */}
+            {WORKS.map((w) => (
+              <div key={w.id} data-slide>
+                <WorkSlide item={w} imageFirst={false} />
+              </div>
+            ))}
 
-            <div className="w-[14px] sm:w-[16px] md:w-[20px] lg:w-[24px]" aria-hidden />
+            {/* Spacer direito DINÂMICO para centralizar o último card no fim */}
+            <div style={{ width: `${tailW}px` }} aria-hidden />
           </motion.div>
         </div>
       </div>
