@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { Suspense, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 
 type LogoCfg = {
   id: string;
@@ -162,18 +162,35 @@ function Scene() {
 }
 
 export default function TechStackCanvas() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <Canvas
-      className="!bg-transparent h-full w-full"
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      dpr={[1, 2]}
-      camera={{ position: [0, 0.9, 8.2], fov: 45 }}
-      shadows={false}
-    >
-      <Suspense fallback={null}>
-        <Scene />
-      </Suspense>
-    </Canvas>
+    <div ref={containerRef} className="h-full w-full">
+      <Canvas
+        className="!bg-transparent h-full w-full"
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0.9, 8.2], fov: 45 }}
+        shadows={false}
+        frameloop={inView ? "always" : "never"}
+      >
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
 

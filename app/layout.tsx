@@ -3,11 +3,16 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import type { PropsWithChildren } from "react";
 
+import dynamic from "next/dynamic";
 import { Footer } from "@/components/main/footer";
 import { Navbar } from "@/components/main/navbar";
-import { StarsCanvas } from "@/components/main/star-background";
 import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
+
+const StarsCanvas = dynamic(
+  () => import("@/components/main/star-background").then((m) => m.StarsCanvas),
+  { ssr: false }
+);
 
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import LanguageSwitcher from "@/components/sub/LanguageSwitcher";

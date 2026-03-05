@@ -9,7 +9,7 @@ import type { Points as PointsType } from "three";
 export const StarBackground = (props: PointsProps) => {
   const ref = useRef<PointsType | null>(null);
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+    random.inSphere(new Float32Array(1500), { radius: 1.2 })
   );
 
   useFrame((_state, delta) => {
@@ -42,7 +42,12 @@ export const StarBackground = (props: PointsProps) => {
 
 export const StarsCanvas = () => (
   <div className="w-full h-auto fixed inset-0 -z-10">
-    <Canvas camera={{ position: [0, 0, 1] }}>
+    <Canvas
+      camera={{ position: [0, 0, 1] }}
+      dpr={1}
+      frameloop="always"
+      gl={{ powerPreference: "low-power", antialias: false, alpha: true }}
+    >
       <Suspense fallback={null}>
         <StarBackground />
       </Suspense>

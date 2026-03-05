@@ -19,7 +19,7 @@ export default function WorkSlide({ item }: Props) {
             w-full
             h-[74%] md:h-[76%] lg:h-[78%]
             min-h-[480px] md:min-h-[560px] lg:min-h-[620px]
-            rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm
+            rounded-xl border border-white/10 bg-[#0a0520]/80
             shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)]
             px-4 py-4 md:px-5 md:py-5
             flex flex-col gap-4 md:gap-5

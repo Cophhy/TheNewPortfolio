@@ -50,7 +50,8 @@ export default function About() {
         <motion.div
           variants={slideInFromLeft(0.2)}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="flex justify-center"
         >
           <Image
@@ -58,7 +59,7 @@ export default function About() {
             alt="About illustration"
             width={620}
             height={620}
-            priority
+            loading="lazy"
             className="select-none pointer-events-none max-w-full h-auto"
           />
         </motion.div>
@@ -68,7 +69,8 @@ export default function About() {
           data-resume
           variants={slideInFromRight(0.3)}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="p-0"
         >
           <h3 className="text-2xl md:text-3xl font-bold text-zinc-100 leading-tight">
